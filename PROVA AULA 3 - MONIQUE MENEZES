@@ -1,0 +1,25 @@
+#[LPIA-A03] Você está criando um programa em Python para simular um jogo simples de adivinhação. O programa deve ter um número fixo, por exemplo, 7, que o jogador deve adivinhar. O jogador terá até 3 tentativas para acertar o número.
+#Implemente o jogo utilizando um loop while para permitir que o jogador faça múltiplas tentativas até acertar ou atingir o limite de tentativas. Utilize a estrutura else para exibir uma mensagem de encorajamento caso o jogador acerte e uma mensagem de consolo caso as 3 tentativas se esgotem sem sucesso.
+
+print("Olá, seja bem-vindo ao Jogo de Adivinhação!")
+print("Estou pensando em um número e você tem 3 chances para adivinhar. Vamos iniciar?")
+
+palpite = 0
+numero_secreto = 7
+jogador_tentativas = 0
+
+while palpite != numero_secreto and jogador_tentativas < 3:
+    palpite = int(input('Jogador, faça sua tentativa de adivinhar o número: '))
+
+    jogador_tentativas += 1
+    
+    if palpite == numero_secreto:
+        print(f'Parabéns!!! Você acertou o número secreto, ele era o número {numero_secreto}.')
+        break
+    elif jogador_tentativas == 3:
+        continue
+    else:
+        print("Você ainda não acertou. Tente mais uma vez!")
+else:
+    print("Game over! Suas tentativas acabaram e você não conseguiu acertar o número secreto!")
+    print("Vamos jogar novamente?")
