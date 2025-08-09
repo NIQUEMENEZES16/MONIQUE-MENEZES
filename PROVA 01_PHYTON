@@ -1,0 +1,9 @@
+#[PYIA-A01] Crie uma lista contendo seis frutas de sua escolha. Depois de ter a lista pronta, converta essa lista em uma tupla. Por fim, exiba o conteúdo da tupla resultante para verificar as frutas que foram armazenadas.
+# 1. Cria a lista de frutas
+LISTA_FRUTAS = ["Morango", "Manga", "Uva", "Abacaxi", "Banana", "Pera"]
+
+# 2. Converte a lista em uma tupla
+TUPLA_FRUTAS = tuple(LISTA_FRUTAS)
+
+# 3. Exibe o conteúdo da tupla resultante
+print("A tupla resultante é:", TUPLA_FRUTAS)
