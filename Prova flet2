@@ -1,0 +1,43 @@
+import flet as ft
+
+def main(page: ft.Page):
+    page.title = "Formulário de Contato"
+    page.vertical_alignment = ft.MainAxisAlignment.START
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    page.scroll = "auto"
+
+    nome = ft.TextField(label="Digite seu Nome", width=400)
+    email = ft.TextField(label="Digite seu E-mail", width=400)
+    mensagem = ft.TextField(label="Deixe a sua Mensagem de interesse", multiline=True, min_lines=4, max_lines=6, width=400)
+
+    mensagem_confirmacao = ft.Text("", color=ft.Colors.GREEN)
+
+    def enviar_formulario(e):
+        if not nome.value or not email.value or not mensagem.value:
+            mensagem_confirmacao.value = "Por favor, preencha todos os campos solicitados. Desta forma conseguimos contactá-lo para tratar a sua demanda da melhor forma."
+            mensagem_confirmacao.color = ft.Colors.RED
+        else:
+            mensagem_confirmacao.value = "Formulário enviado com sucesso!"
+            mensagem_confirmacao.color = ft.Colors.GREEN
+
+            nome.value = ""
+            email.value = ""
+            mensagem.value = ""
+
+        nome.update()
+        email.update()
+        mensagem.update()
+        mensagem_confirmacao.update()
+
+    botao_enviar = ft.ElevatedButton(text="Enviar", on_click=enviar_formulario)
+
+    page.add(
+        ft.Text("Formulário de Contato", size=30, weight=ft.FontWeight.BOLD),
+        nome,
+        email,
+        mensagem,
+        botao_enviar,
+        mensagem_confirmacao
+    )
+
+ft.app(target=main)
