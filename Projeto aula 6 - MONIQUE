@@ -1,0 +1,152 @@
+tarefas = []
+categorias = set()
+
+def adicionar_tarefa():
+    print()
+    nome = input("Nome da tarefa: ")
+    descricao = input("Descrição da tarefa: ")
+    prioridades_validas = ["baixa", "media", "alta"]
+    while True:
+        prioridade = input("Prioridade (baixa, media, alta): ").lower()
+        if prioridade in prioridades_validas:
+            break
+        else:
+            print("Prioridade inválida! Por favor, escolha entre: baixa, media ou alta.")
+    categoria = input("Categoria da tarefa: ")
+
+    if not nome or not prioridade or not categoria:
+        print("Todos os campos são obrigatórios! Revise o preenchimento.")
+        return
+
+    tarefa = {
+        "nome": nome,
+        "descricao": descricao,
+        "prioridade": prioridade,
+        "categoria": categoria,
+        "concluida": False
+    }
+
+    tarefas.append(tarefa)
+    categorias.add(categoria)
+    print("\nTarefa adicionada com sucesso!\n")
+
+
+def verificar_e_perguntar_adicionar():
+    print("Nenhuma tarefa com esse status foi encontrada.")
+    resposta = input("Deseja cadastrar uma nova tarefa agora? (s/n): ").strip().lower()
+    if resposta == "s":
+        adicionar_tarefa()
+        print()
+
+
+def listar_tarefas(filtrar_concluidas=None):
+    if not tarefas:
+        verificar_e_perguntar_adicionar()
+        return
+
+    encontrou = False
+    for i, tarefa in enumerate(tarefas):
+        if filtrar_concluidas is not None and tarefa["concluida"] != filtrar_concluidas:
+            continue
+        encontrou = True
+        status = "Concluída" if tarefa["concluida"] else "Pendente"
+        print(f"{i + 1}. {tarefa['nome']} [{tarefa['prioridade']}] - {tarefa['categoria']} - {status}")
+        print(f"   Descrição: {tarefa['descricao']}\n")
+
+    if not encontrou:
+        verificar_e_perguntar_adicionar()
+
+
+def marcar_concluida():
+    if not tarefas:
+        verificar_e_perguntar_adicionar()
+        return
+
+    listar_tarefas(filtrar_concluidas=False)
+    try:
+        indice = int(input("Digite o número da tarefa que deseja marcar como concluída: ")) - 1
+        if 0 <= indice < len(tarefas):
+            tarefas[indice]["concluida"] = True
+            print("Tarefa marcada como concluída!\n")
+        else:
+            print("Número de tarefa inválido.\n")
+    except ValueError:
+        print("Entrada inválida.\n")
+
+
+def exibir_por_prioridade():
+    if not tarefas:
+        verificar_e_perguntar_adicionar()
+        return
+
+    prioridades = ("alta", "media", "baixa")
+    for prioridade in prioridades:
+        encontrou_na_prioridade = False
+        print(f"\nTarefas com prioridade: {prioridade.upper()}")
+
+        for tarefa in tarefas:
+            if tarefa["prioridade"] == prioridade:
+                status = "✅" if tarefa.get("concluida") else "❌"
+                print(f" - {tarefa['nome']} ({status})")
+                encontrou_na_prioridade = True
+
+        if not encontrou_na_prioridade:
+            print("Ainda não há tarefas com essa prioridade cadastrada.")
+
+
+def exibir_por_categoria():
+    if not categorias:
+        print("Nenhuma categoria registrada.\n")
+        verificar_e_perguntar_adicionar()
+        return
+
+    encontrou = False
+    for categoria in categorias:
+        print(f"\nCategoria: {categoria}")
+        for tarefa in tarefas:
+            if tarefa["categoria"] == categoria:
+                status = "✅" if tarefa["concluida"] else "❌"
+                print(f" - {tarefa['nome']} ({status})")
+                encontrou = True
+    if not encontrou:
+        verificar_e_perguntar_adicionar()
+
+
+def menu():
+    while True:
+        print("\n***** MENU DE TAREFAS *****")
+        print("1. Adicionar nova tarefa")
+        print("2. Listar todas as tarefas cadastradas")
+        print("3. Marcar tarefa como concluída")
+        print("4. Exibir tarefas por prioridade")
+        print("5. Exibir tarefas por categoria")
+        print("6. Listar somente as tarefas pendentes")
+        print("7. Listar somente as tarefas concluídas")
+        print("0. Sair do programa")
+
+        print()
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            adicionar_tarefa()
+        elif opcao == "2":
+            listar_tarefas()
+        elif opcao == "3":
+            marcar_concluida()
+        elif opcao == "4":
+            exibir_por_prioridade()
+        elif opcao == "5":
+            exibir_por_categoria()
+        elif opcao == "6":
+            listar_tarefas(filtrar_concluidas=False)
+        elif opcao == "7":
+            listar_tarefas(filtrar_concluidas=True)
+        elif opcao == "0":
+            print("Saindo do programa... Até a próxima!")
+            break
+        else:
+            print("Opção inválida. Digitar alguma opção disponível!\n")
+
+
+if __name__ == "__main__":
+    menu()
