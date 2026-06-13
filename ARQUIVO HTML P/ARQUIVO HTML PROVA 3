@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <h1>Lista de Tarefas (JSIA-A05)</h1>
+    <p>Atividade de Monique Menezes</p>
+    <p>Abra o console (F12) para ver a saída</p>
+
+    <script src="PROVA3.js"></script>
+</body>
+</html>
