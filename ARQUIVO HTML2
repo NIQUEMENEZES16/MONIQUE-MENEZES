@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Compras</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        ul {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lista de Compras</h1>
+    <p>Atividade de Monique Menezes</p></p>
+    <p>Abra o console (F12) para ver o resultado</p>
+
+
+    <input type="text" id="item" placeholder="Digite um item">
+    <button onclick="adicionar()">Adicionar</button>
+
+    <br><br>
+
+    <input type="number" id="indice" placeholder="Índice">
+    <input type="text" id="novoItem" placeholder="Novo valor">
+    <button onclick="atualizar()">Atualizar</button>
+    <button onclick="remover()">Remover</button>
+
+    <h3>Itens:</h3>
+    <ul id="lista"></ul>
+
+    <script src="PROVA2.js"></script>
+
+</body>
+</html>
