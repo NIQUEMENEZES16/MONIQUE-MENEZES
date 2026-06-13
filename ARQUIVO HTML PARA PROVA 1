@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>JSIA A03</title>
+</head>
+<body>
+    <h1>Atividade JSIA A03</h1>
+    <p>Atividade de Monique Menezes</p>
+    <p>Abra o console (F12) para ver o resultado</p>
+
+
+    <script src="PROVA1.JS"></script>
+</body>
+</html>
