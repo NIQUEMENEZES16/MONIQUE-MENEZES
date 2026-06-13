@@ -1,0 +1,70 @@
+// [JSIA-A04]  Crie um programa em JavaScript que permita ao usuário gerenciar uma lista de compras utilizando arrays. O programa deve permitir a adição de itens, a remoção de itens e a exibição de todos os itens da lista.
+
+// Requisitos do Projeto:
+// * Adicionar Itens:
+//  - Utilize o método push() para permitir que o usuário adicione novos itens à lista de compras.
+
+// * Remover Itens:
+//  - Permita que o usuário remova um item específico utilizando o método splice().
+//  - O programa deve solicitar o índice do item a ser removido.
+
+// * Exibir Lista:
+//  - Use um loop for...of para percorrer e exibir os itens da lista. Cada item deve ser mostrado com seu respectivo índice.
+
+// * Atualizar Itens:
+//  - Permita que o usuário atualize um item da lista ao fornecer o índice e o novo valor.
+
+let lista = [];
+
+function renderizar() {
+    const ul = document.getElementById("lista");
+    ul.innerHTML = "";
+
+    for (let i = 0; i < lista.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = `${i}: ${lista[i]}`;
+        ul.appendChild(li);
+    }
+}
+
+// ADICIONAR
+function adicionar() {
+    const item = document.getElementById("item").value;
+
+    if (item === "") {
+        alert("Digite um item!");
+        return;
+    }
+
+    lista.push(item);
+    document.getElementById("item").value = "";
+
+    renderizar();
+}
+
+// REMOVER
+function remover() {
+    const indice = Number(document.getElementById("indice").value);
+
+    if (indice >= 0 && indice < lista.length) {
+        lista.splice(indice, 1);
+    } else {
+        alert("Índice inválido!");
+    }
+
+    renderizar();
+}
+
+// ATUALIZAR
+function atualizar() {
+    const indice = Number(document.getElementById("indice").value);
+    const novoItem = document.getElementById("novoItem").value;
+
+    if (indice >= 0 && indice < lista.length) {
+        lista[indice] = novoItem;
+    } else {
+        alert("Índice inválido!");
+    }
+
+    renderizar();
+}
