@@ -1,0 +1,88 @@
+// [JSIA-A05]  Crie um programa em que permita ao usuário gerenciar uma lista de tarefas usando arrays e loops. O programa deve oferecer as opções de adicionar, remover, listar e concluir tarefas, enquanto manipula o array de tarefas e utiliza loops para percorrê-lo.
+
+// Requisitos do Projeto:
+// * Adicionar Tarefas:
+//  - Solicite ao usuário o nome de uma tarefa e adicione-a ao final do array usando o método push().
+
+// * Listar Tarefas:
+//  - Use um loop for ou for...of para percorrer o array de tarefas e exibi-las com seus índices.
+
+// * Remover Tarefas:
+//  - Solicite ao usuário o índice da tarefa que deseja remover e utilize o método splice() para removê-la do array.
+
+// * Concluir Tarefas (Opcional):
+// - Peça ao usuário o índice de uma tarefa e marque-a como concluída, modificando a string para algo como "✅ Lavar a louça".
+
+// * Interação Contínua:
+//  - Utilize um loop while para continuar solicitando ações do usuário (adicionar, listar, remover, concluir) até que ele escolha sair.
+
+let tarefas = [];
+let opcao = "";
+
+// loop principal
+while (opcao !== "5") {
+
+    opcao = prompt(
+        "LISTA DE TAREFAS\n" +
+        "1 - Adicionar tarefa\n" +
+        "2 - Listar tarefas\n" +
+        "3 - Remover tarefa\n" +
+        "4 - Concluir tarefa\n" +
+        "5 - Sair"
+    );
+
+    // ADICIONAR
+    if (opcao === "1") {
+        let tarefa = prompt("Digite a tarefa:");
+        tarefas.push(tarefa);
+        alert("Tarefa adicionada!");
+    }
+
+    // LISTAR
+    else if (opcao === "2") {
+        if (tarefas.length === 0) {
+            alert("Nenhuma tarefa cadastrada!");
+        } else {
+            let lista = "";
+
+            for (let i = 0; i < tarefas.length; i++) {
+                lista += `${i}: ${tarefas[i]}\n`;
+            }
+
+            alert(lista);
+        }
+    }
+
+    // REMOVER
+    else if (opcao === "3") {
+        let indice = Number(prompt("Digite o índice da tarefa:"));
+
+        if (indice >= 0 && indice < tarefas.length) {
+            tarefas.splice(indice, 1);
+            alert("Tarefa removida!");
+        } else {
+            alert("Índice inválido!");
+        }
+    }
+
+    // CONCLUIR
+    else if (opcao === "4") {
+        let indice = Number(prompt("Digite o índice da tarefa concluída:"));
+
+        if (indice >= 0 && indice < tarefas.length) {
+            tarefas[indice] = "✅ " + tarefas[indice];
+            alert("Tarefa concluída!");
+        } else {
+            alert("Índice inválido!");
+        }
+    }
+
+    // SAIR
+    else if (opcao === "5") {
+        alert("Saindo do programa...");
+    }
+
+    else {
+        alert("Opção inválida!");
+    }
+}
